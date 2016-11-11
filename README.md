@@ -9,8 +9,10 @@ ipanema analyzes and prints useful information from *.ipa file.
 Usage: ipanema [OPTIONS] path-to.ipa
 
 OPTIONS:
+  -A    Do both what -E and -I would do.
   -E    Find, Decrypt and Print all embedded.mobileprovision files.
-  -v    print version number
+  -I    Find and Print all Info.plist files.
+  -v    Print version number
 ```
 
 ## embedded.mobileprovision files. (-E)
@@ -26,6 +28,21 @@ $ ipanema -E path/to/your.ipa | head
     <array>
     <string>XXXXXXXXXX</string>
     </array>
+```
+
+## Info.plist (-I)
+```
+$ ipanema -I /Users/toshi0383/Desktop/dTV/dTV_dev.ipa | head
+
+### dTV.app/Frameworks/APIKit.framework/Info.plist
+{
+  "CFBundleName" => "APIKit"
+  "DTXcode" => "0730"
+  "DTSDKName" => "appletvos9.2"
+  "NSHumanReadableCopyright" => "Copyright © 2015 Yosuke Ishikawa. All rights reserved."
+  "DTSDKBuild" => "13Y227"
+  "CFBundleDevelopmentRegion" => "en"
+  "CFBundleVersion" => "1"
 ```
 
 # Prequisite
