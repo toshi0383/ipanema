@@ -2,6 +2,7 @@ package main
 
 import (
     "os"
+    "bytes"
     "flag"
     "fmt"
     "runtime"
@@ -12,15 +13,19 @@ import (
 // Command line flags
 var (
     embeddedMobileprovision bool
+    infoPlist               bool
+    all                     bool
     showVersion             bool
 
-    version = "devel" // for -v flag, updated during the release process with -ldflags=-X=main.version=...
+    version = "0.2.0"
 )
 
 var ipaPath string
 
 func init() {
     flag.BoolVar(&embeddedMobileprovision, "E", false, "Find, Decrypt and Print all embedded.mobileprovision files.")
+    flag.BoolVar(&infoPlist, "I", false, "Find and Print all Info.plist files.")
+    flag.BoolVar(&all, "A", false, "Do both what -E and -I would do.")
     flag.BoolVar(&showVersion, "v", false, "print version number")
     flag.Usage = usage
 }
@@ -46,22 +51,34 @@ func main() {
     }
     ipaPath = args[0]
 
-    if embeddedMobileprovision {
+    if all || embeddedMobileprovision {
         printEmbeddedMobileprovision()
+    }
+    if all || infoPlist {
+        printInfoPlist()
     }
 }
 
 func verifyOptions() bool {
-    return embeddedMobileprovision
+   return all || (embeddedMobileprovision || infoPlist)
 }
 
-func printEmbeddedMobileprovision() {
-    bytes, err := exec.Command("./scripts/inspect_ipa_mobileprovision.sh", ipaPath).Output()
+func execAndPrintStdout(command string) {
+    cmd := exec.Command(command, ipaPath)
+	var stdout bytes.Buffer
+	cmd.Stdout = &stdout
+
+    err := cmd.Run()
     if err != nil {
         log.Fatal(err)
         os.Exit(2)
     }
-    for i := range bytes {
-        fmt.Printf("%c", bytes[i])
-    }
+	fmt.Println(stdout.String())
+}
+
+func printEmbeddedMobileprovision() {
+	execAndPrintStdout("./scripts/inspect_ipa_mobileprovision.sh")
+}
+func printInfoPlist (){
+	execAndPrintStdout("./scripts/inspect_ipa_infoplist.sh")
 }
