@@ -32,9 +32,9 @@ $ ipanema -E path/to/your.ipa | head
 
 ## Info.plist (-I)
 ```
-$ ipanema -I /Users/toshi0383/Desktop/dTV/dTV_dev.ipa | head
+$ ipanema -I path/to/your.ipa | head
 
-### dTV.app/Frameworks/APIKit.framework/Info.plist
+### App.app/Frameworks/APIKit.framework/Info.plist
 {
   "CFBundleName" => "APIKit"
   "DTXcode" => "0730"
