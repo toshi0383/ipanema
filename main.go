@@ -17,7 +17,7 @@ var (
     all                     bool
     showVersion             bool
 
-    version = "0.1.0" // for -v flag, updated during the release process with -ldflags=-X=main.version=...
+    version = "0.2.0"
 )
 
 var ipaPath string
