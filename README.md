@@ -1,5 +1,4 @@
-ipanema 🏖
----
+# ipanema 🏖
 
 ipanema is a great partner when you're debugging ipa device install errors.
 ipanema analyzes and prints useful information from *.ipa file.
