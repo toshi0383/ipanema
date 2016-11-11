@@ -1,8 +1,8 @@
-Ipanema 🏖
+ipanema 🏖
 ---
 
-Ipanema is a great partner when you're debugging ipa device install errors.
-Ipanema analyzes and prints useful information from *.ipa file.
+ipanema is a great partner when you're debugging ipa device install errors.
+ipanema analyzes and prints useful information from *.ipa file.
 
 # Usage
 
