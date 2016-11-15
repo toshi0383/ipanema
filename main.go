@@ -2,13 +2,19 @@ package main
 
 import (
     "os"
-    "bytes"
     "flag"
     "fmt"
     "runtime"
-    "os/exec"
     "log"
+
+    "github.com/progrium/go-basher"
 )
+
+func assert(err error) {
+    if err != nil {
+        log.Fatal(err)
+    }
+}
 
 // Command line flags
 var (
@@ -63,22 +69,17 @@ func verifyOptions() bool {
    return all || (embeddedMobileprovision || infoPlist)
 }
 
-func execAndPrintStdout(command string) {
-    cmd := exec.Command(command, ipaPath)
-	var stdout bytes.Buffer
-	cmd.Stdout = &stdout
-
-    err := cmd.Run()
-    if err != nil {
-        log.Fatal(err)
-        os.Exit(2)
-    }
-	fmt.Println(stdout.String())
+func _execute(scriptFilePath string) {
+    bash, _ := basher.NewContext("/bin/bash", false)
+    bash.Source(scriptFilePath, Asset)
+    status, err := bash.Run("main", []string{ipaPath})
+    assert(err)
+    os.Exit(status)
 }
 
 func printEmbeddedMobileprovision() {
-	execAndPrintStdout("./scripts/inspect_ipa_mobileprovision.sh")
+	_execute("bash/inspect_ipa_mobileprovision.sh")
 }
 func printInfoPlist (){
-	execAndPrintStdout("./scripts/inspect_ipa_infoplist.sh")
+	_execute("bash/inspect_ipa_infoplist.sh")
 }
