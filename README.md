@@ -51,11 +51,9 @@ $ ipanema -I path/to/your.ipa | head
 
 # Install
 
-Just go get it🚀
-
-```
-$ go get github.com/toshi0383/ipanema
-```
+- Download the latest binary from [releases page](https://github.com/toshi0383/ipanema/releases).
+- `chmod +x ~/Download/ipanema`
+- `cp ~/Download/ipanema where-ever-you-want/`
 
 # License
 MIT
