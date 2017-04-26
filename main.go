@@ -75,11 +75,11 @@ func _execute(scriptFilePath string, appOnly bool) {
 	bash, _ := basher.NewContext("/bin/bash", false)
 	bash.Source(scriptFilePath, Asset)
 	if appOnly {
-		status, err := bash.Run("main", []string{ipaPath})
+		status, err := bash.Run("main", []string{ipaPath, "true"})
 		assert(err)
 		os.Exit(status)
 	} else {
-		status, err := bash.Run("main", []string{ipaPath, "true"})
+		status, err := bash.Run("main", []string{ipaPath})
 		assert(err)
 		os.Exit(status)
 	}
