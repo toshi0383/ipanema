@@ -47,7 +47,7 @@ $ ipanema -I path/to/your.ipa | head
 
 # Prequisite
 
-- OSX/macOS
+- macOS/macOS
 
 # Install
 
