@@ -14,6 +14,7 @@
 #
 # parameters:
 #   - 1 IPA_PATH: path to ipa
+#   - 2 APP_ONLY (optional): If set, prints only an App's main Info.plist.
 #
 
 set -eo pipefail
