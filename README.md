@@ -1,6 +1,5 @@
 # ipanema 🏖
 
-ipanema is a great partner when you're debugging ipa device install errors.
 ipanema analyzes and prints useful information from *.ipa file.
 
 # Usage
@@ -12,7 +11,8 @@ OPTIONS:
   -A    Do both what -E and -I would do.
   -E    Find, Decrypt and Print all embedded.mobileprovision files.
   -I    Find and Print all Info.plist files.
-  -v    Print version number
+  -i    Find and Print only app's main Info.plist file.
+  -v    print version number
 ```
 
 ## embedded.mobileprovision files. (-E)
@@ -51,6 +51,13 @@ $ ipanema -I path/to/your.ipa | head
 
 # Install
 
+## Homebrew
+ipanema is available via Homebrew.
+```
+brew tap toshi0383/ipanema && brew install ipanema
+```
+
+## Binary
 - Download the latest binary from [releases page](https://github.com/toshi0383/ipanema/releases).
 - `chmod +x ~/Download/ipanema`
 - `cp ~/Download/ipanema where-ever-you-want/`

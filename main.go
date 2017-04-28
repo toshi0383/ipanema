@@ -32,7 +32,7 @@ var ipaPath string
 func init() {
 	flag.BoolVar(&embeddedMobileprovision, "E", false, "Find, Decrypt and Print all embedded.mobileprovision files.")
 	flag.BoolVar(&infoPlist, "I", false, "Find and Print all Info.plist files.")
-	flag.BoolVar(&appInfoPlist, "i", false, "Find and Print only an app's main Info.plist file.")
+	flag.BoolVar(&appInfoPlist, "i", false, "Find and Print only app's main Info.plist file.")
 	flag.BoolVar(&all, "A", false, "Do both what -E and -I would do.")
 	flag.BoolVar(&showVersion, "v", false, "print version number")
 	flag.Usage = usage
